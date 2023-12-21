@@ -1,0 +1,12 @@
+:root {
+    --clr-bg: #f6f2f0;
+    --fs-h1: clamp(1.25rem, 1.25vw + 1rem, 2.125rem);
+}
+
+body{
+    background-color: var(--clr-bg);
+}
+
+h1{
+    font-size: var(--fs-h1);
+}

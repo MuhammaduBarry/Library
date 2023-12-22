@@ -31,23 +31,10 @@ const getForm = () => {
   submitFormInput.value = "submit";
   submitFormInput.id = "submit-form-input";
   form.appendChild(submitFormInput);
-  submitFormInput.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
 
   formContainer.appendChild(form);
 };
-
-function addFormLimit() {
-  addBookButton.addEventListener("click", getForm);
-}
-addFormLimit();
-
 const myLibrary = [];
-
-const author = authorInput.value;
-const title = titleInput.value;
-const number = numberInput.value;
 
 class Book {
   constructor(author, title, number) {
@@ -59,16 +46,35 @@ class Book {
 class AddToLibrary extends Book {
   constructor(author, title, number) {
     super(author, title, number);
-    this.test = function () {
-      submitFormInput.addEventListener("click", function () {
-        console.log(`author: ${author}`);
-        console.log(`title: ${title}`);
-        console.log(`pages: ${number}`);
-        console.log("book submitted Thank you");
-      });
+    this.bookInput = function () {
+      // declaration for our form values
+      let author = authorInput.value;
+      let title = titleInput.value;
+      let number = numberInput.value;
+
+      console.log(`author: ${author}`);
+      console.log(`title: ${title}`);
+      console.log(`pages: ${number}`);
+      console.log("book submitted Thank you");
+
+      // Reset form values
+      authorInput.value = "";
+      titleInput.value = "";
+      numberInput.value = "";
+
+      formContainer.removeChild(form);
     };
   }
 }
 
-const harryPotter = new AddToLibrary();
-harryPotter.test();
+// to be continued
+// const harryPotter = new AddToLibrary();
+
+const AddForm = () => {
+  addBookButton.addEventListener("click", getForm);
+  submitFormInput.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+};
+
+AddForm();

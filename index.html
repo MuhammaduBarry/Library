@@ -5,33 +5,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Library</title>
 </head>
 
 <body>
-    <div class="">
-        <h1>hello</h1>
-        <i class="bi bi-shop-window"></i>
-    </div>
-    <div class="add-button-container">
-        <button>add <i class="bi bi-journals"></i></button>
+    <header class="header-container">
+        <nav class="nav-bar-container">
+            <i class="bi bi-shop-window shop-css-style "></i>
+            <div class="a-main-container">
+                <a href="#" class="a-nav a-nav-first">log In</a>
+                <a href="#" class="a-nav a-nav-second">Sign up</a>
+            </div>
+        </nav>
+    </header>
+    <div class="Library-container">
+        <h1>WELCOME TO THE LIBRARY</h1>
+        <div class="add-button-container">
+            <button>add <i class="bi bi-journals journals-css-style"></i></button>
+        </div>
     </div>
     <div class="form-container">
-        <form action="">
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <input type="submit" value="Submit">
-        </form>
+        <!-- this will be added to the dom dynamically to ensure great structure -->
+        <!-- <form action="">
+            <div class="input-container">
+                <label for="fname">Author</label>
+                <input type="text" id="fname" name="fname">
+            </div>
+            <div class="input-container">
+                <label for="lname">Title</label>
+                <input type="text" id="lname" name="lname">
+            </div>
+            <div class="input-container">
+                <label for="lname">Pages</label>
+                <input type="text" id="lname" name="lname">
+            </div>
+            <input type="submit" value="Submit" id="form-input-btn">
+        </form> -->
     </div>
-    <div>
-
-    </div>
+    <div class="main-book-container"></div>
     <footer>
-        <i class="bi bi-github"><a href="">Muhammadu Barry</a></i>
+        <i class="bi bi-github github-css-style"><a href="" class="footer-a">Muhammadu Barry</a></i>
     </footer>
     <script src="script.js"></script>
 </body>

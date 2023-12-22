@@ -1,12 +1,86 @@
 :root {
-    --clr-bg: #f6f2f0;
-    --fs-h1: clamp(1.25rem, 1.25vw + 1rem, 2.125rem);
+  --clr-bg: #f6f2f0;
+  --fs-h1: clamp(1.25rem, 1.25vw + 1rem, 2.125rem);
+  --ff-primary: "Playfair Display", serif;
 }
 
-body{
-    background-color: var(--clr-bg);
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 
-h1{
-    font-size: var(--fs-h1);
+body {
+  background-color: var(--clr-bg);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-family: var(--ff-primary);
+}
+.shop-css-style {
+  font-size: 2rem;
+}
+.nav-bar-container {
+  display: flex;
+  align-items: center;
+}
+.a-main-container {
+  margin-left: auto;
+}
+.a-nav {
+  font-family: var(--ff-primary);
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+}
+.a-nav:hover {
+  text-decoration: underline;
+}
+.a-nav-first {
+  padding-right: 1.3rem;
+}
+.a-nav-second {
+  padding-right: 0.5rem;
+}
+.Library-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.add-button-container {
+  margin-bottom: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgb(239, 0, 0);
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  display: none;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+#form-input-btn {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-a{
+    font-family: var(--ff-primary);
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
 }

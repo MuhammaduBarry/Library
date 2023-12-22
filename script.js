@@ -13,11 +13,13 @@ const getForm = () => {
   authorInput.type = "text";
   authorInput.placeholder = "Author";
   authorInput.id = "author-input";
+  authorInput.autocomplete = "off";
   form.appendChild(authorInput);
 
   titleInput.type = "text";
   titleInput.placeholder = "Title";
   titleInput.id = "title-input";
+  titleInput.autocomplete = "off";
   form.appendChild(titleInput);
 
   numberInput.type = "number";
@@ -68,13 +70,19 @@ class AddToLibrary extends Book {
 }
 
 // to be continued
-// const harryPotter = new AddToLibrary();
+const test = new AddToLibrary();
 
 const AddForm = () => {
   addBookButton.addEventListener("click", getForm);
   submitFormInput.addEventListener("click", (e) => {
     e.preventDefault();
+    test.bookInput();
   });
+  numberInput.addEventListener("keydown", (e) => {
+    if (e.key === "e" || e.key == "E") {
+        e.preventDefault();
+    }
+  })
 };
 
 AddForm();

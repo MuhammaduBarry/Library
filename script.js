@@ -54,8 +54,9 @@ class Book {
   }
 }
 
-// we defined our class constructor values for our input Values
+// this function is used to add our book into the library array
 const addToLibrary = () => {
+  // this is used to replace our class constructor to receive our input values
   const author = authorInput.value;
   const title = titleInput.value;
   const pages = numberInput.value;

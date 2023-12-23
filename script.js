@@ -36,53 +36,54 @@ const getForm = () => {
 
   formContainer.appendChild(form);
 };
-const myLibrary = [];
+// Our New Books Get Placed In Here
+let myLibrary = [];
 
+// we created a class constructor
 class Book {
-  constructor(author, title, number) {
+  constructor(author, title, pages) {
     this.author = author;
     this.title = title;
-    this.number = number;
-  }
-}
-class AddToLibrary extends Book {
-  constructor(author, title, number) {
-    super(author, title, number);
+    this.pages = pages;
     this.bookInput = function () {
-      // declaration for our form values
-      let author = authorInput.value;
-      let title = titleInput.value;
-      let number = numberInput.value;
-
       console.log(`author: ${author}`);
       console.log(`title: ${title}`);
-      console.log(`pages: ${number}`);
+      console.log(`pages: ${pages}`);
       console.log("book submitted Thank you");
-
-      // Reset form values
-      authorInput.value = "";
-      titleInput.value = "";
-      numberInput.value = "";
-
-      formContainer.removeChild(form);
     };
   }
 }
 
-// to be continued
-const test = new AddToLibrary();
+// we defined our class constructor values for our input Values
+const addToLibrary = () => {
+  const author = authorInput.value;
+  const title = titleInput.value;
+  const pages = numberInput.value;
+
+  const userBook = new Book(author, title, pages);
+  userBook.bookInput();
+  myLibrary.push(userBook);
+};
 
 const AddForm = () => {
   addBookButton.addEventListener("click", getForm);
   submitFormInput.addEventListener("click", (e) => {
     e.preventDefault();
-    test.bookInput();
+
+    addToLibrary();
+    // Reset form values
+    authorInput.value = "";
+    titleInput.value = "";
+    numberInput.value = "";
+
+    formContainer.removeChild(form);
   });
+
   numberInput.addEventListener("keydown", (e) => {
     if (e.key === "e" || e.key == "E") {
-        e.preventDefault();
+      e.preventDefault();
     }
-  })
+  });
 };
 
 AddForm();

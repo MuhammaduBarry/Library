@@ -61,6 +61,7 @@ const addToLibrary = () => {
   const title = titleInput.value;
   const pages = numberInput.value;
 
+  // this creates a new book class that receives our new input values
   const userBook = new Book(author, title, pages);
   userBook.bookInput();
   myLibrary.push(userBook);
@@ -72,6 +73,7 @@ const AddForm = () => {
     e.preventDefault();
 
     addToLibrary();
+
     // Reset form values
     authorInput.value = "";
     titleInput.value = "";

@@ -63,11 +63,12 @@ form {
   padding: 10px;
 }
 form > * {
-  margin: .5rem;
+  margin: 0.5rem;
   text-align: center;
 }
-.slider{
-  display: none;
+
+.read-button {
+  background-color: green;
 }
 
 footer {

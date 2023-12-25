@@ -42,25 +42,6 @@ const getForm = () => {
   // Appending the form to the form container
   formContainer.appendChild(form);
 };
-<<<<<<< HEAD
-=======
-
-// these are our elements for our card display
-const mainBookContainer = document.querySelector(".main-book-container");
-const bookCardContainer = document.createElement("div");
-bookCardContainer.classList.add("card-container");
-const authorTag = document.createElement("h3");
-authorTag.classList.add("card-author-display");
-const titleTag = document.createElement("h3");
-titleTag.classList.add("card-title-display");
-const numberTag = document.createElement("h3");
-numberTag.classList.add("card-number-display");
-const readToggle = document.createElement("input");
-readToggle.type = "checkbox";
-readToggle.classList.add("slider");
-const label = document.createElement("label");
-label.for = "slider";
->>>>>>> main
 
 // Class constructor for Book
 class Book {
@@ -68,7 +49,6 @@ class Book {
     this.author = author;
     this.title = title;
     this.pages = pages;
-<<<<<<< HEAD
   }
 }
 
@@ -116,8 +96,6 @@ const displayLibrary = () => {
         newReadToggle.innerText = "READING";
       }
 
-      // this toggles the state between reading and finishing
-      //   if it equals false then the else statement is ran
       isReading = !isReading;
     });
 
@@ -160,44 +138,6 @@ const addToLibrary = () => {
 // Event listeners for form and submit button
 const addFormAndRemove = () => {
   // Event listener to show the form
-=======
-    this.bookInput = function () {
-      // this is were we construct our card for our dom display
-      authorTag.innerText = author;
-      bookCardContainer.appendChild(authorTag);
-      titleTag.innerText = title;
-      bookCardContainer.appendChild(titleTag);
-      numberTag.innerText = pages;
-      bookCardContainer.appendChild(numberTag);
-      bookCardContainer.appendChild(readToggle);
-
-      mainBookContainer.appendChild(bookCardContainer);
-    };
-  }
-}
-
-// Our New Books Get Placed In Here
-let myLibrary = [];
-
-// this function is used to add our book into the library array
-const addToLibrary = () => {
-  // this is used to replace our class constructor to receive our input values
-  const author = authorInput.value;
-  const title = titleInput.value;
-  const pages = numberInput.value;
-
-  // this creates a new book class that receives our new input values
-  const userBook = new Book(author, title, pages);
-  userBook.bookInput();
-  myLibrary.push(userBook);
-
-  myLibrary.map((book) => {
-    console.log("myLibrary:", book);
-  });
-};
-
-const addFormAndRemove = () => {
->>>>>>> main
   addBookButton.addEventListener("click", getForm);
 
   // Event listener for form submission
@@ -215,8 +155,5 @@ const addFormAndRemove = () => {
   });
 };
 
-<<<<<<< HEAD
 // Initialize the form and event listeners
-=======
->>>>>>> main
 addFormAndRemove();

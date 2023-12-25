@@ -1,27 +1,31 @@
 const addBookButton = document.querySelector("#add-book-button");
 const formContainer = document.querySelector(".form-container");
+const mainBookContainer = document.querySelector(".main-book-container");
 
-// this is our form elements and values
+// Creating form elements
 const form = document.createElement("form");
 const authorInput = document.createElement("input");
 const titleInput = document.createElement("input");
 const numberInput = document.createElement("input");
 const submitFormInput = document.createElement("input");
 
-// this function lets our form to appear for our user input
+// Function to create the form
 const getForm = () => {
+  // Configuring author input
   authorInput.type = "text";
   authorInput.placeholder = "Author";
   authorInput.id = "author-input";
   authorInput.autocomplete = "off";
   form.appendChild(authorInput);
 
+  // Configuring title input
   titleInput.type = "text";
   titleInput.placeholder = "Title";
   titleInput.id = "title-input";
   titleInput.autocomplete = "off";
   form.appendChild(titleInput);
 
+  // Configuring number input
   numberInput.type = "number";
   numberInput.placeholder = "Pages";
   numberInput.id = "number-input";
@@ -29,86 +33,121 @@ const getForm = () => {
   numberInput.inputMode = "numeric";
   form.appendChild(numberInput);
 
+  // Configuring submit button
   submitFormInput.type = "submit";
   submitFormInput.value = "submit";
   submitFormInput.id = "submit-form-input";
   form.appendChild(submitFormInput);
 
+  // Appending the form to the form container
   formContainer.appendChild(form);
 };
 
-// these are our elements for our card display
-const mainBookContainer = document.querySelector(".main-book-container");
-const bookCardContainer = document.createElement("div");
-bookCardContainer.classList.add("card-container");
-const authorTag = document.createElement("h3");
-authorTag.classList.add("card-author-display");
-const titleTag = document.createElement("h3");
-titleTag.classList.add("card-title-display");
-const numberTag = document.createElement("h3");
-numberTag.classList.add("card-number-display");
-const readToggle = document.createElement("input");
-readToggle.type = "checkbox";
-readToggle.classList.add("slider");
-const label = document.createElement("label");
-label.for = "slider";
-
-// we created a class constructor
+// Class constructor for Book
 class Book {
   constructor(author, title, pages) {
     this.author = author;
     this.title = title;
     this.pages = pages;
-    this.bookInput = function () {
-      // this is were we construct our card for our dom display
-      authorTag.innerText = author;
-      bookCardContainer.appendChild(authorTag);
-      titleTag.innerText = title;
-      bookCardContainer.appendChild(titleTag);
-      numberTag.innerText = pages;
-      bookCardContainer.appendChild(numberTag);
-      bookCardContainer.appendChild(readToggle);
-
-      mainBookContainer.appendChild(bookCardContainer);
-    };
   }
 }
 
-// Our New Books Get Placed In Here
+// Array to store books
 let myLibrary = [];
 
-// this function is used to add our book into the library array
-const addToLibrary = () => {
-  // this is used to replace our class constructor to receive our input values
-  const author = authorInput.value;
-  const title = titleInput.value;
-  const pages = numberInput.value;
+// Function to display all books in the library
+const displayLibrary = () => {
+  // Clear existing book cards
+  mainBookContainer.innerHTML = "";
 
-  // this creates a new book class that receives our new input values
-  const userBook = new Book(author, title, pages);
-  userBook.bookInput();
-  myLibrary.push(userBook);
+  // Loop through the library array and display each book
+  myLibrary.forEach((book) => {
+    // Create new elements for each book
+    const newBookCardContainer = document.createElement("div");
+    newBookCardContainer.classList.add("card-container");
 
-  myLibrary.map((book) => {
-    console.log("myLibrary:", book);
+    const newAuthorTag = document.createElement("h3");
+    newAuthorTag.classList.add("card-author-display");
+    newAuthorTag.innerText = `Author: ${book.author}`;
+
+    const newTitleTag = document.createElement("h3");
+    newTitleTag.classList.add("card-title-display");
+    newTitleTag.innerText = `Title: ${book.title}`;
+
+    const newNumberTag = document.createElement("h3");
+    newNumberTag.classList.add("card-number-display");
+    newNumberTag.innerText = `Pages: ${book.pages}`;
+
+    const newSliderContainer = document.createElement("div");
+    newSliderContainer.classList.add("slider-container");
+
+    const newReadToggle = document.createElement("button");
+    newReadToggle.innerText = "READING";
+    newReadToggle.classList.add("read-button");
+
+    let isReading = true;
+
+    newReadToggle.addEventListener("click", () => {
+      if (isReading) {
+        newReadToggle.style.backgroundColor = "red";
+        newReadToggle.innerText = "FINISHED";
+      } else {
+        newReadToggle.style.backgroundColor = "";
+        newReadToggle.innerText = "READING";
+      }
+
+      isReading = !isReading;
+    });
+
+    // Append elements to the new card container
+    newBookCardContainer.appendChild(newAuthorTag);
+    newBookCardContainer.appendChild(newTitleTag);
+    newBookCardContainer.appendChild(newNumberTag);
+
+    newSliderContainer.appendChild(newReadToggle);
+    newBookCardContainer.appendChild(newSliderContainer);
+
+    mainBookContainer.appendChild(newBookCardContainer);
   });
 };
 
+// Function to create a new book card and add it to the library
+const addToLibrary = () => {
+  // Create a new book object
+  const newBook = new Book(
+    authorInput.value,
+    titleInput.value,
+    numberInput.value
+  );
+
+  // Add the new book to the library array
+  myLibrary.push(newBook);
+
+  // Display the updated library
+  displayLibrary();
+
+  // Reset form values
+  authorInput.value = "";
+  titleInput.value = "";
+  numberInput.value = "";
+
+  // Remove the form
+  formContainer.removeChild(form);
+};
+
+// Event listeners for form and submit button
 const addFormAndRemove = () => {
+  // Event listener to show the form
   addBookButton.addEventListener("click", getForm);
+
+  // Event listener for form submission
   submitFormInput.addEventListener("click", (e) => {
     e.preventDefault();
-
+    // Call addToLibrary when the form is submitted
     addToLibrary();
-
-    // Reset form values
-    authorInput.value = "";
-    titleInput.value = "";
-    numberInput.value = "";
-
-    formContainer.removeChild(form);
   });
 
+  // Input validation to prevent 'e' key in number input
   numberInput.addEventListener("keydown", (e) => {
     if (e.key === "e" || e.key == "E") {
       e.preventDefault();
@@ -116,4 +155,5 @@ const addFormAndRemove = () => {
   });
 };
 
+// Initialize the form and event listeners
 addFormAndRemove();

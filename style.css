@@ -66,6 +66,9 @@ form > * {
   margin: .5rem;
   text-align: center;
 }
+.slider{
+  display: none;
+}
 
 footer {
   position: fixed;

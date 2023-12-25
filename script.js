@@ -36,8 +36,22 @@ const getForm = () => {
 
   formContainer.appendChild(form);
 };
-// Our New Books Get Placed In Here
-let myLibrary = [];
+
+// these are our elements for our card display
+const mainBookContainer = document.querySelector(".main-book-container");
+const bookCardContainer = document.createElement("div");
+bookCardContainer.classList.add("card-container");
+const authorTag = document.createElement("h3");
+authorTag.classList.add("card-author-display");
+const titleTag = document.createElement("h3");
+titleTag.classList.add("card-title-display");
+const numberTag = document.createElement("h3");
+numberTag.classList.add("card-number-display");
+const readToggle = document.createElement("input");
+readToggle.type = "checkbox";
+readToggle.classList.add("slider");
+const label = document.createElement("label");
+label.for = "slider";
 
 // we created a class constructor
 class Book {
@@ -46,13 +60,22 @@ class Book {
     this.title = title;
     this.pages = pages;
     this.bookInput = function () {
-      console.log(`author: ${author}`);
-      console.log(`title: ${title}`);
-      console.log(`pages: ${pages}`);
-      console.log("book submitted Thank you");
+      // this is were we construct our card for our dom display
+      authorTag.innerText = author;
+      bookCardContainer.appendChild(authorTag);
+      titleTag.innerText = title;
+      bookCardContainer.appendChild(titleTag);
+      numberTag.innerText = pages;
+      bookCardContainer.appendChild(numberTag);
+      bookCardContainer.appendChild(readToggle);
+
+      mainBookContainer.appendChild(bookCardContainer);
     };
   }
 }
+
+// Our New Books Get Placed In Here
+let myLibrary = [];
 
 // this function is used to add our book into the library array
 const addToLibrary = () => {
@@ -65,9 +88,13 @@ const addToLibrary = () => {
   const userBook = new Book(author, title, pages);
   userBook.bookInput();
   myLibrary.push(userBook);
+
+  myLibrary.map((book) => {
+    console.log("myLibrary:", book);
+  });
 };
 
-const AddForm = () => {
+const addFormAndRemove = () => {
   addBookButton.addEventListener("click", getForm);
   submitFormInput.addEventListener("click", (e) => {
     e.preventDefault();
@@ -89,4 +116,4 @@ const AddForm = () => {
   });
 };
 
-AddForm();
+addFormAndRemove();

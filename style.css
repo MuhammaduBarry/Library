@@ -1,5 +1,6 @@
 :root {
   --clr-bg: #f6f2f0;
+  --clr-secondary: white;
   --fs-h1: clamp(1.25rem, 1.25vw + 1rem, 2.125rem);
   --ff-primary: "Playfair Display", serif;
 }
@@ -62,26 +63,63 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust the last value for opacity */
-  z-index: 1; /* Place it above other elements */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1; 
+}
+
+.form-container {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(0);
 }
 
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  border: 1px solid rgb(239, 0, 0);
-  padding: 10px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-form > * {
-  margin: 0.5rem;
-  text-align: center;
+  border-radius: .8rem;
+  padding: 20px;
+  background-color: var(--clr-secondary);
+  padding-bottom: 25px;
 }
 
+/* form children */
+form > * {
+  margin: 0.5rem;
+  padding-left: 5px;
+  font-family: var(--ff-primary);
+  font-weight: bold;
+}
+.x-css-style{
+  position: absolute;
+  top: 3px; 
+  right: 9px; 
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.x-css-style:hover{
+  color: red;
+}
+.header-form-style {
+  font-family: var(--ff-primary);
+  font-weight: 900;
+}
+#submit-form-input{
+  background-color: #43936f;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: .2rem;
+  text-transform: capitalize;
+  border: none;
+}
+#submit-form-input:hover{
+  background-color: #51bc8c;
+}
 .read-button {
   background-color: green;
 }
@@ -103,9 +141,10 @@ footer {
   font-size: 1.5rem;
   color: black;
 }
-.github-css-style{
+.github-css-style {
   text-decoration: none;
   font-size: 1.5rem;
   color: black;
 }
 
+/* media quries */

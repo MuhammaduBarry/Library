@@ -1,6 +1,7 @@
 const addBookButton = document.querySelector("#add-book-button");
 const formContainer = document.querySelector(".form-container");
 const mainBookContainer = document.querySelector(".main-book-container");
+const spanTagHeader = document.querySelector(".span-i-tag-header");
 const body = document.querySelector("body");
 
 // Creating form elements
@@ -43,6 +44,7 @@ const getForm = () => {
   submitFormInput.id = "submit-form-input";
 
   // Configuring form animation
+  console.log(form);
   form.classList.add("animate__animated", "animate__pulse");
 
   // Appending the form to the form container
@@ -100,6 +102,7 @@ const addToLibrary = () => {
     // book in this case is our newBook
     myLibrary.forEach((book) => {
       // Create new elements for each book
+
       const newBookCardContainer = document.createElement("div");
       newBookCardContainer.classList.add("card-container");
 
@@ -122,6 +125,10 @@ const addToLibrary = () => {
       newReadToggle.innerText = "READING";
       newReadToggle.classList.add("read-button");
 
+      const removeCardButton = document.createElement("button");
+      removeCardButton.innerText = "REMOVE";
+      removeCardButton.classList.add("remove-card-button");
+
       let isReading = true;
 
       newReadToggle.addEventListener("click", () => {
@@ -140,9 +147,9 @@ const addToLibrary = () => {
       newBookCardContainer.appendChild(newAuthorTag);
       newBookCardContainer.appendChild(newTitleTag);
       newBookCardContainer.appendChild(newNumberTag);
-
-      newSliderContainer.appendChild(newReadToggle);
       newBookCardContainer.appendChild(newSliderContainer);
+      newBookCardContainer.appendChild(removeCardButton);
+      newSliderContainer.appendChild(newReadToggle);
 
       mainBookContainer.appendChild(newBookCardContainer);
     });
@@ -185,7 +192,9 @@ iTag.addEventListener("click", () => {
   formContainer.removeChild(form);
   body.classList.remove("overlay");
 });
-
+spanTagHeader.addEventListener("click", ()=> {
+    location.reload();
+})
 
 // Initialize the form and event listeners
 addFormAndRemove();

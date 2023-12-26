@@ -15,6 +15,9 @@ body {
   margin: 0;
 }
 
+main{
+  min-height: calc(100vh - 137px);
+}
 h1 {
   font-size: var(--fs-h1);
   font-family: var(--ff-primary);
@@ -52,15 +55,27 @@ h1 {
 .add-button-container {
   margin-bottom: 1rem;
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the last value for opacity */
+  z-index: 1; /* Place it above other elements */
+}
+
 form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: 1px solid rgb(239, 0, 0);
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   padding: 10px;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 form > * {
   margin: 0.5rem;
@@ -71,18 +86,22 @@ form > * {
   background-color: green;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: clamp(1rem, 0.571vw + 0.886rem, 1.4rem);
-  margin-bottom: 10px;
+
+footer{
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-a {
-  text-decoration: none;
-  color: inherit;
   font-family: var(--ff-primary);
+  font-size: clamp(1rem, 0.571vw + 0.886rem, 1.4rem);
 }
+.github-css-style{
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: black;
+}
+

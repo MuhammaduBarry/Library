@@ -15,7 +15,7 @@ body {
   margin: 0;
 }
 
-main{
+main {
   min-height: calc(100vh - 137px);
 }
 h1 {
@@ -72,10 +72,10 @@ form {
   justify-content: center;
   border: 1px solid rgb(239, 0, 0);
   padding: 10px;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 form > * {
   margin: 0.5rem;
@@ -86,8 +86,7 @@ form > * {
   background-color: green;
 }
 
-
-footer{
+footer {
   height: 100px;
   width: 100%;
   display: flex;
@@ -99,9 +98,8 @@ footer{
   font-family: var(--ff-primary);
   font-size: clamp(1rem, 0.571vw + 0.886rem, 1.4rem);
 }
-.github-css-style{
+.github-css-style {
   text-decoration: none;
   font-size: 1.5rem;
   color: black;
 }
-

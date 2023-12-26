@@ -18,10 +18,10 @@ const overlay = () => {
   // Function to toggle overlay class
   const toggleOverlay = () => {
     if (isOverlay) {
-        body.classList.remove("overlay");
-      } else {
-        body.classList.add("overlay");
-      }
+      body.classList.remove("overlay");
+    } else {
+      body.classList.add("overlay");
+    }
 
     // Update the isOverlay variable after toggling the class
     isOverlay = !isOverlay;
@@ -31,12 +31,10 @@ const overlay = () => {
   addBookButton.addEventListener("click", toggleOverlay);
 
   submitFormInput.addEventListener("click", toggleOverlay);
-
 };
 
 // Function to create the form
 const getForm = () => {
-
   // Configuring author input
   authorInput.type = "text";
   authorInput.placeholder = "Author";
@@ -175,8 +173,6 @@ const addFormAndRemove = () => {
     }
   });
 };
-
-
 
 // Initialize the form and event listeners
 addFormAndRemove();

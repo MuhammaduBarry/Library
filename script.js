@@ -1,6 +1,7 @@
 const addBookButton = document.querySelector("#add-book-button");
 const formContainer = document.querySelector(".form-container");
 const mainBookContainer = document.querySelector(".main-book-container");
+const body = document.querySelector("body");
 
 // Creating form elements
 const form = document.createElement("form");
@@ -9,8 +10,33 @@ const titleInput = document.createElement("input");
 const numberInput = document.createElement("input");
 const submitFormInput = document.createElement("input");
 
+// our overlay form
+const overlay = () => {
+  // Define isOverlay variable
+  let isOverlay = false;
+
+  // Function to toggle overlay class
+  const toggleOverlay = () => {
+    if (isOverlay) {
+        body.classList.remove("overlay");
+      } else {
+        body.classList.add("overlay");
+      }
+
+    // Update the isOverlay variable after toggling the class
+    isOverlay = !isOverlay;
+  };
+
+  // Event listener for addBookButton
+  addBookButton.addEventListener("click", toggleOverlay);
+
+  submitFormInput.addEventListener("click", toggleOverlay);
+
+};
+
 // Function to create the form
 const getForm = () => {
+
   // Configuring author input
   authorInput.type = "text";
   authorInput.placeholder = "Author";
@@ -55,12 +81,23 @@ class Book {
 // Array to store books
 let myLibrary = [];
 
-// Function to display all books in the library
-const displayLibrary = () => {
+// Function to create a new book card and add it to the library
+const addToLibrary = () => {
+  // Create a new book object
+  const newBook = new Book(
+    authorInput.value,
+    titleInput.value,
+    numberInput.value
+  );
+
+  // Add the new book to the library array
+  myLibrary.push(newBook);
+
   // Clear existing book cards
   mainBookContainer.innerHTML = "";
 
   // Loop through the library array and display each book
+  // book in this case is our newBook
   myLibrary.forEach((book) => {
     // Create new elements for each book
     const newBookCardContainer = document.createElement("div");
@@ -109,22 +146,6 @@ const displayLibrary = () => {
 
     mainBookContainer.appendChild(newBookCardContainer);
   });
-};
-
-// Function to create a new book card and add it to the library
-const addToLibrary = () => {
-  // Create a new book object
-  const newBook = new Book(
-    authorInput.value,
-    titleInput.value,
-    numberInput.value
-  );
-
-  // Add the new book to the library array
-  myLibrary.push(newBook);
-
-  // Display the updated library
-  displayLibrary();
 
   // Reset form values
   authorInput.value = "";
@@ -155,5 +176,9 @@ const addFormAndRemove = () => {
   });
 };
 
+
+
 // Initialize the form and event listeners
 addFormAndRemove();
+
+document.addEventListener("DOMContentLoaded", overlay);

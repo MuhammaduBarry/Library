@@ -2,7 +2,7 @@
 
 ## Were We Task To Create A Page To Store Books Using Our New Found Knowledge
 
-### *** Concepts I Have Learned While Creating This Project : ***
+### ** Concepts I Have Learned While Creating This Project : **
 1. Class Constructors.
 2. The Require Method.
 3. The check Validity and report Validity Methods.

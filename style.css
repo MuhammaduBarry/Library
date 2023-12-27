@@ -64,6 +64,7 @@ h1 {
   margin-bottom: 1rem;
 }
 #add-book-button {
+  color: black;
   padding: 0.8rem 1.2rem;
   font-family: var(--ff-primary);
   font-weight: bold;

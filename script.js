@@ -4,7 +4,7 @@ const mainBookContainer = document.querySelector(".main-book-container");
 const spanTagHeader = document.querySelector(".span-i-tag-header");
 const body = document.querySelector("body");
 
-// Creating form elements
+// creating form elements
 const form = document.createElement("form");
 const headerForm = document.createElement("h3");
 const authorInput = document.createElement("input");
@@ -13,7 +13,7 @@ const numberInput = document.createElement("input");
 const submitFormInput = document.createElement("input");
 const iTag = document.createElement("i");
 
-// Function to create the form
+// function to create the form
 const getForm = () => {
   iTag.classList.add("bi", "bi-x", "x-css-style");
 
@@ -60,7 +60,8 @@ const getForm = () => {
 
   console.log("opening form");
 };
-// Class constructor for Book
+
+// class constructor for Book
 class Book {
   constructor(author, title, pages) {
     this.author = author;
@@ -69,29 +70,29 @@ class Book {
   }
 }
 
-// Array to store books
+// array to store books
 let myLibrary = [];
 
-// Function to create a new book card and add it to the library
+// function to create a new book card and add it to the library
 const addToLibrary = () => {
-  // Set required attribute to true
+  // set required attribute to true
   authorInput.required = true;
   titleInput.required = true;
   numberInput.required = true;
 
   // checks if it's true if not it will report it down below
   if (form.checkValidity()) {
-    // Create a new book object
+    // creating a new book object
     const newBook = new Book(
       authorInput.value,
       titleInput.value,
       numberInput.value
     );
 
-    // Add the new book to the library array
+    // adding our new books to our array
     myLibrary.push(newBook);
 
-    // Clear existing book cards
+    // clearing existing book cards
     mainBookContainer.innerHTML = "";
 
     authorInput.setAttribute("required", "true");
@@ -102,7 +103,6 @@ const addToLibrary = () => {
     // book in this case is our newBook
     myLibrary.forEach((book) => {
       // Create new elements for each book
-
       const newBookCardContainer = document.createElement("div");
       newBookCardContainer.classList.add("card-container");
 
@@ -128,6 +128,7 @@ const addToLibrary = () => {
       const removeCardButton = document.createElement("button");
       removeCardButton.innerText = "REMOVE";
       removeCardButton.classList.add("remove-card-button");
+      removeCardButton.style.add = "color";
 
       let isReading = true;
 
@@ -135,15 +136,17 @@ const addToLibrary = () => {
         if (isReading) {
           newReadToggle.style.backgroundColor = "red";
           newReadToggle.innerText = "FINISHED";
+          newReadToggle.style.color = "black";
         } else {
           newReadToggle.style.backgroundColor = "";
           newReadToggle.innerText = "READING";
+          newReadToggle.style.color = "black";
         }
 
         isReading = !isReading;
       });
 
-      // Append elements to the new card container
+      // append elements to the new card container
       newBookCardContainer.appendChild(newAuthorTag);
       newBookCardContainer.appendChild(newTitleTag);
       newBookCardContainer.appendChild(newNumberTag);
@@ -156,11 +159,12 @@ const addToLibrary = () => {
 
     body.classList.remove("overlay");
 
-    // Reset form values
+    // reset form values
     authorInput.value = "";
     titleInput.value = "";
     numberInput.value = "";
-    // Remove the form
+
+    // remove the form
     formContainer.removeChild(form);
   } else {
     form.reportValidity();
@@ -169,14 +173,14 @@ const addToLibrary = () => {
 
 // Event listeners for form and submit button
 const addFormAndRemove = () => {
-  // Event listener to show the form
+  // event listener to show the form
   addBookButton.addEventListener("click", getForm);
 
-  // Event listener for form submission
+  // event listener for form submission
   submitFormInput.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Call addToLibrary when the form is submitted
+    // call addToLibrary
     addToLibrary();
   });
 
@@ -188,13 +192,37 @@ const addFormAndRemove = () => {
   });
 };
 
+// this removes our form in case we did not mean to click it.
 iTag.addEventListener("click", () => {
   formContainer.removeChild(form);
   body.classList.remove("overlay");
 });
-spanTagHeader.addEventListener("click", ()=> {
-    location.reload();
-})
+// when we click our span and itag we refresh our page
+spanTagHeader.addEventListener("click", () => {
+  location.reload();
+});
 
-// Initialize the form and event listeners
+const domRemoval = () => {
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("remove-card-button")) {
+      const removeCardButton = event.target;
+
+      // this returns our card Container to be used
+      const bookCardContainer = removeCardButton.closest(".card-container");
+
+      // this turns our mainBookContainer into an array and returns the index of our book container
+      const indexToRemove = Array.from(mainBookContainer.children).indexOf(
+        bookCardContainer
+      );
+      if (bookCardContainer) {
+        bookCardContainer.remove();
+        myLibrary.splice(indexToRemove, 1);
+      }
+    }
+  });
+};
+
+// we call our function to execute our form and card.
 addFormAndRemove();
+
+domRemoval();
